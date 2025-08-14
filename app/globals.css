@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 45 93% 47%; /* yellow-500 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 100% 89%; /* yellow-100 */
+    --secondary-foreground: 45 86% 28%; /* yellow-800 */
+    --muted: 45 100% 96%; /* yellow-50 */
+    --muted-foreground: 45 84% 38%; /* yellow-700 */
+    --accent: 45 93% 58%; /* yellow-400 */
+    --accent-foreground: 45 86% 28%; /* yellow-800 */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 45 46% 87%; /* yellow-200 */
+    --input: 45 46% 87%; /* yellow-200 */
+    --ring: 45 93% 47%; /* yellow-500 */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 45 93% 47%; /* yellow-500 */
+    --primary-foreground: 240 10% 3.9%;
+    --secondary: 45 30% 11%; /* dark yellow */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 45 93% 58%; /* yellow-400 */
+    --accent-foreground: 240 10% 3.9%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 45 93% 47%; /* yellow-500 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
