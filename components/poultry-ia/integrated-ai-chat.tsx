@@ -120,11 +120,43 @@ export const IntegratedAIChat = forwardRef<{ sendMessage: (message: string) => P
       setInput("")
       setIsTyping(true)
 
-      // Simulate AI processing time
-      setTimeout(() => {
-        const aiResponse = generateAIResponse(textToSend)
+      try {
+        // Call the real OpenAI API
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            messages: [...messages, userMessage].map(msg => ({
+              role: msg.role,
+              content: msg.content
+            }))
+          }),
+        })
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const data = await response.json()
+        
         const assistantMessage: Message = {
           id: Date.now() + 1, // Use timestamp + 1 to avoid conflicts
+          role: "assistant",
+          content: data.content || "Lo siento, no pude procesar tu consulta en este momento.",
+          timestamp: new Date(),
+          hasAttachment: false,
+        }
+
+        setMessages((prev) => [...prev, assistantMessage])
+      } catch (error) {
+        console.error('Error calling OpenAI API:', error)
+        
+        // Fallback to simulated response if API fails
+        const aiResponse = generateAIResponse(textToSend)
+        const assistantMessage: Message = {
+          id: Date.now() + 1,
           role: "assistant",
           content: aiResponse.content,
           timestamp: new Date(),
@@ -133,8 +165,9 @@ export const IntegratedAIChat = forwardRef<{ sendMessage: (message: string) => P
         }
 
         setMessages((prev) => [...prev, assistantMessage])
+      } finally {
         setIsTyping(false)
-      }, 1500)
+      }
     }
 
     const copyMessage = async (message: Message) => {
