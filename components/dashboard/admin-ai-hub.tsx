@@ -109,62 +109,63 @@ export function AdminAIHub() {
         </Badge>
       </div>
 
-      {/* Quick Actions Grid */}
-      <Card className="border-yellow-200">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-yellow-800">
-            <Zap className="h-5 w-5" />
-            Acciones Rápidas
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <m.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-            variants={staggerContainer({ delayChildren: 0.05, staggerChildren: 0.04 })}
-            initial="hidden"
-            animate="show"
-          >
-            {quickActions.map((action) => (
-              <m.div key={action.id} variants={fadeInUp}>
-                <m.button
-                  className="w-full p-4 text-left border border-gray-200 rounded-lg hover:border-yellow-300 hover:bg-yellow-50 transition-colors relative overflow-hidden"
-                  onClick={() => handleQuickAction(action)}
-                  {...buttonPress}
-                >
-                  {/* Ripple effect */}
-                  {activeAction === action.id && (
-                    <m.span
-                      className="absolute inset-0 bg-yellow-200 rounded-lg"
-                      initial={{ scale: 0, opacity: 0.6 }}
-                      animate={{ scale: 1.5, opacity: 0 }}
-                      transition={{ duration: 0.6 }}
-                    />
-                  )}
-
-                  <div className="flex items-start gap-3 relative z-10">
-                    <div className={`p-2 ${action.color} rounded-lg`}>
-                      <action.icon className="h-4 w-4 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium text-gray-900 mb-1">{action.title}</h3>
-                      <p className="text-sm text-gray-600">{action.description}</p>
-                    </div>
-                  </div>
-                </m.button>
-              </m.div>
-            ))}
-          </m.div>
-        </CardContent>
-      </Card>
-
       {/* AI Chat Interface */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <IntegratedAIChat ref={chatRef} />
         </div>
 
-        {/* Quick Stats */}
+        {/* Right Sidebar */}
         <div className="space-y-4">
+          {/* Quick Actions */}
+          <Card className="border-yellow-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-yellow-800">
+                <Zap className="h-5 w-5" />
+                Acciones Rápidas
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <m.div
+                className="space-y-3"
+                variants={staggerContainer({ delayChildren: 0.05, staggerChildren: 0.04 })}
+                initial="hidden"
+                animate="show"
+              >
+                {quickActions.map((action) => (
+                  <m.div key={action.id} variants={fadeInUp}>
+                    <m.button
+                      className="w-full p-3 text-left border border-gray-200 rounded-lg hover:border-yellow-300 hover:bg-yellow-50 transition-colors relative overflow-hidden"
+                      onClick={() => handleQuickAction(action)}
+                      {...buttonPress}
+                    >
+                      {/* Ripple effect */}
+                      {activeAction === action.id && (
+                        <m.span
+                          className="absolute inset-0 bg-yellow-200 rounded-lg"
+                          initial={{ scale: 0, opacity: 0.6 }}
+                          animate={{ scale: 1.5, opacity: 0 }}
+                          transition={{ duration: 0.6 }}
+                        />
+                      )}
+
+                      <div className="flex items-start gap-3 relative z-10">
+                        <div className={`p-2 ${action.color} rounded-lg`}>
+                          <action.icon className="h-4 w-4 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-medium text-gray-900 mb-1 text-sm">{action.title}</h3>
+                          <p className="text-xs text-gray-600">{action.description}</p>
+                        </div>
+                      </div>
+                    </m.button>
+                  </m.div>
+                ))}
+              </m.div>
+            </CardContent>
+          </Card>
+
+          {/* Quick Stats */}
           <Card className="border-yellow-200">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm text-yellow-800">Resumen Ejecutivo</CardTitle>
