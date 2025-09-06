@@ -94,7 +94,7 @@ function SensorCard({ sensor }: { sensor: IoTSensor }) {
             <div className="text-2xl font-bold">
               {sensor.value.toFixed(1)} {sensor.unit}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Actualizado: {sensor.lastUpdate.toLocaleTimeString()}</p>
+            <p className="text-xs text-muted-foreground mt-1">Actualizado: {sensor.lastUpdate?.toLocaleTimeString() || 'N/A'}</p>
           </CardContent>
         </m.div>
       </Card>
