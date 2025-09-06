@@ -44,7 +44,7 @@ interface BreederMetricsProps {
   batchId: string | null
 }
 
-export function BreederMetricsComponent({ open, onOpenChange, batchId }: BreederMetricsProps) {
+export function BreederMetrics({ open, onOpenChange, batchId }: BreederMetricsProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [existingMetrics, setExistingMetrics] = useState<BreederMetrics[]>([])
   const [selectedWeek, setSelectedWeek] = useState(1)

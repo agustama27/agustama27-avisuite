@@ -284,3 +284,47 @@ export async function getCostData(): Promise<CostData[]> {
     },
   ]
 }
+
+// Missing utility functions for build
+export async function getRealVsStandard() {
+  await new Promise((resolve) => setTimeout(resolve, 300))
+  return {
+    real: { weight: 2.1, fcr: 1.65, mortality: 2.5 },
+    standard: { weight: 2.3, fcr: 1.55, mortality: 2.0 }
+  }
+}
+
+export async function uploadStandardCSV(file: File) {
+  await new Promise((resolve) => setTimeout(resolve, 500))
+  return { success: true, message: "Archivo cargado exitosamente" }
+}
+
+export async function getKpisCloseout() {
+  await new Promise((resolve) => setTimeout(resolve, 300))
+  return {
+    fcr: 1.65,
+    fep: 385,
+    mortality: 2.5,
+    weight: 2.1
+  }
+}
+
+export async function createHatchLoad(data: any) {
+  await new Promise((resolve) => setTimeout(resolve, 500))
+  return { success: true, id: "INC-004" }
+}
+
+export async function createBreederBatch(data: any) {
+  await new Promise((resolve) => setTimeout(resolve, 500))
+  return { success: true, id: "REP-003" }
+}
+
+export async function getBreederMetrics(batchId: string) {
+  await new Promise((resolve) => setTimeout(resolve, 300))
+  return []
+}
+
+export async function saveBreederMetrics(data: any) {
+  await new Promise((resolve) => setTimeout(resolve, 500))
+  return { success: true }
+}
